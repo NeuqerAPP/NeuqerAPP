@@ -12,6 +12,7 @@ import cn.abtion.neuqercc.base.models.BaseModel;
 public class LoginRequest extends BaseModel {
     private String identifier;
     private String password;
+    private String client;
 
     public LoginRequest() {
 
@@ -31,6 +32,13 @@ public class LoginRequest extends BaseModel {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public  String getClient(){
+        return client;
+    }
+    public void setClient(String client){
+        this.client=client;
     }
 
 

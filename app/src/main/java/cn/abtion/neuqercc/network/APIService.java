@@ -18,4 +18,5 @@ public interface APIService {
      */
     @POST("user/login")
     Call<APIResponse> login(@Body LoginRequest loginRequest);
+
 }

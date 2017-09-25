@@ -1,4 +1,4 @@
-package cn.abtion.neuqercc.account.activities;
+package cn.abtion.neuqercc.account;
 
 import android.content.Intent;
 import android.support.design.widget.TextInputEditText;
@@ -27,6 +27,8 @@ public class LoginActivity extends NoBarActivity {
     TextInputEditText editIdentifier;
     @BindView(R.id.edit_password)
     TextInputEditText editPassword;
+    @BindView(R.id.edit_client)
+    TextInputEditText editClient;
 
     private LoginRequest loginRequest;
 
@@ -58,6 +60,7 @@ public class LoginActivity extends NoBarActivity {
     public void onBtnLoginClicked() {
         loginRequest.setIdentifier(editIdentifier.getText().toString().trim());
         loginRequest.setPassword(editPassword.getText().toString().trim());
+        loginRequest.setClient(editClient.getText().toString().trim());
 
         if (isDataTrue()){
             login();
@@ -83,8 +86,6 @@ public class LoginActivity extends NoBarActivity {
                 //跳转至MainActivity
                 Intent intent = new Intent(LoginActivity.this, MainActivity.class);
                 startActivity(intent);
-
-                finish();
             }
 
             //请求失败时回调
@@ -126,6 +127,10 @@ public class LoginActivity extends NoBarActivity {
             flag = false;
         }else if (editPassword.getText().toString().trim().length()<6){
             showError(editPassword,"密码不得少于6位");
+            flag = false;
+        }
+        else if(editClient.getText().toString().trim().length()==0){
+            showError(editClient,"设备标识符不可为空");
             flag = false;
         }
         return flag;
