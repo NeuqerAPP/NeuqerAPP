@@ -4,4 +4,13 @@
     <string name="register">注册</string>
     <string name="msg_input_identifier">请输入oj账号/id/邮箱</string>
     <string name="msg_input_password">请输入密码</string>
+    <string name="register_name">用户昵称注册</string>
+    <string name="register_mail">绑定邮箱</string>
+    <string name="register_phone_number">绑定手机号</string>
+    <string name="register_password">用户密码</string>
+    <string name="password_confirm">密码确认</string>
+    <string name="school">用户学校</string>
+    <string name="captch">验证码</string>
+
+
 </resources>

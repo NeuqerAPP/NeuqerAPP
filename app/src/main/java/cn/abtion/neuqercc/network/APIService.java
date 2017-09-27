@@ -16,7 +16,6 @@ public interface APIService {
     /**
      * 登录
      */
-    @POST("user/login")
+    @POST("user/register")
     Call<APIResponse> login(@Body LoginRequest loginRequest);
-
 }

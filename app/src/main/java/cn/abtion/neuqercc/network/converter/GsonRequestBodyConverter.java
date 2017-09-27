@@ -1,4 +1,4 @@
-package cn.abtion.neuqercc.network.convert;
+package cn.abtion.neuqercc.network.converter;
 
 import com.google.gson.Gson;
 import com.google.gson.TypeAdapter;

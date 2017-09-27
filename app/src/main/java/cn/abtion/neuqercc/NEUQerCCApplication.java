@@ -8,7 +8,7 @@ import android.os.Bundle;
 import java.util.ArrayList;
 import java.util.List;
 
-import cn.abtion.neuqercc.account.LoginActivity;
+import cn.abtion.neuqercc.account.activities.LoginActivity;
 import cn.abtion.neuqercc.utils.CacheUtil;
 
 /**
@@ -89,7 +89,7 @@ public class NEUQerCCApplication extends Application {
     /**
      * 移除Activity
      *
-     * @param activity
+     * @param activity activity
      */
     public void removeActivity(Activity activity) {
         if (activity != null && !activity.isFinishing()) {

@@ -10,35 +10,74 @@ import cn.abtion.neuqercc.base.models.BaseModel;
 
 
 public class LoginRequest extends BaseModel {
-    private String identifier;
-    private String password;
-    private String client;
+
+    private String registeName;
+    private String registePassword;
+    private String passwordConfirm;
+    private String registeMail;
+    private String registePhone;
+    private String registeSchool;
+    private String registeCaptch;
+
+    public String getRegisteName() {
+        return registeName;
+    }
+
+    public void setRegisteName(String registeName) {
+        this.registeName = registeName;
+    }
+
+    public String getRegistePassword() {
+        return registePassword;
+    }
+
+    public void setRegistePassword(String registePassword) {
+        this.registePassword = registePassword;
+    }
+
+    public String getPasswordConfirm() {
+        return passwordConfirm;
+    }
+
+    public void setPasswordConfirm(String passwordConfirm) {
+        this.passwordConfirm = passwordConfirm;
+    }
+
+    public String getRegisteMail() {
+        return registeMail;
+    }
+
+    public void setRegisteMail(String registeMail) {
+        this.registeMail = registeMail;
+    }
+
+    public String getRegistePhone(String trim) {
+        return registePhone;
+    }
+
+    public void setRegistePhone(String registePhone) {
+        this.registePhone = registePhone;
+    }
+
+    public String getRegisteSchool(String trim) {
+        return registeSchool;
+    }
+
+    public void setRegisteSchool(String registeSchool) {
+        this.registeSchool = registeSchool;
+    }
+
+    public String getRegisteCaptch(String trim) {
+        return registeCaptch;
+    }
+
+    public void setRegisteCaptch(String registeCaptch) {
+        this.registeCaptch = registeCaptch;
+    }
 
     public LoginRequest() {
 
-    }
 
-    public String getIdentifier() {
-        return identifier;
-    }
-
-    public void setIdentifier(String identifier) {
-        this.identifier = identifier;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
-    public  String getClient(){
-        return client;
-    }
-    public void setClient(String client){
-        this.client=client;
     }
 
 

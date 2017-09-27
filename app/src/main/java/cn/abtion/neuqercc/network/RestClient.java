@@ -6,7 +6,7 @@ import java.util.concurrent.TimeUnit;
 import cn.abtion.neuqercc.NEUQerCCApplication;
 import cn.abtion.neuqercc.common.Config;
 import cn.abtion.neuqercc.common.constants.CacheKey;
-import cn.abtion.neuqercc.network.convert.ResponseConverterFactory;
+import cn.abtion.neuqercc.network.converter.ResponseConverterFactory;
 import okhttp3.Interceptor;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;

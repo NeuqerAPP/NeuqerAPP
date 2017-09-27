@@ -7,4 +7,5 @@ package cn.abtion.neuqercc.network;
  */
 
 public class APICode {
+
 }
