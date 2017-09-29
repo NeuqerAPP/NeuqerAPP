@@ -8,7 +8,7 @@ import android.os.Bundle;
 import java.util.ArrayList;
 import java.util.List;
 
-import cn.abtion.neuqercc.account.activities.LoginActivity;
+
 import cn.abtion.neuqercc.utils.CacheUtil;
 
 /**
@@ -121,7 +121,7 @@ public class NEUQerCCApplication extends Application {
     public void exitAccount() {
         getCacheUtil().clear();
         removeAllActivity();
-        Intent intent = new Intent(this,LoginActivity.class);
+        Intent intent = new Intent(this, cn.abtion.neuqercc.newAccount.activit.LoginActivity.class);
         intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK|Intent.FLAG_ACTIVITY_NEW_TASK);
         startActivity(intent);
     }

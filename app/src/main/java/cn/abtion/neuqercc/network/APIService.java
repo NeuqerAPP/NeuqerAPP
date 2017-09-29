@@ -1,6 +1,6 @@
 package cn.abtion.neuqercc.network;
 
-import cn.abtion.neuqercc.account.models.LoginRequest;
+
 import retrofit2.Call;
 import retrofit2.http.Body;
 import retrofit2.http.POST;
@@ -17,5 +17,5 @@ public interface APIService {
      * 登录
      */
     @POST("user/register")
-    Call<APIResponse> login(@Body LoginRequest loginRequest);
+    Call<APIResponse> login(@Body cn.abtion.neuqercc.newAccount.models.LoginRequest loginRequest);
 }

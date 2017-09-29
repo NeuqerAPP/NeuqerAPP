@@ -1,4 +1,4 @@
-package cn.abtion.neuqercc.account.activities;
+package cn.abtion.neuqercc.newAccount.activit;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -9,23 +9,22 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import cn.abtion.neuqercc.R;
-import cn.abtion.neuqercc.account.models.LoginRequest;
 import cn.abtion.neuqercc.base.activities.NoBarActivity;
 import cn.abtion.neuqercc.main.MainActivity;
 import cn.abtion.neuqercc.network.APIResponse;
 import cn.abtion.neuqercc.network.DataCallback;
 import cn.abtion.neuqercc.network.RestClient;
+import cn.abtion.neuqercc.newAccount.models.LoginRequest;
 import cn.abtion.neuqercc.utils.ToastUtil;
 import retrofit2.Call;
 import retrofit2.Response;
 
 /**
- * @author abtion.
- * @since 17/9/22 17:59.
- * email caiheng@hrsoft.net
+ * Created by lszr on 2017/9/29.
  */
 
 public class LoginActivity extends NoBarActivity {
+
 
     @BindView(R.id.edit_register_name)
     TextInputEditText editRegisterName;
@@ -41,19 +40,21 @@ public class LoginActivity extends NoBarActivity {
     TextInputEditText editSchool;
     @BindView(R.id.edit_captch)
     TextInputEditText editCaptch;
-
+    @BindView(R.id.btn_login)
+    Button btnLogin;
 
 
     private LoginRequest loginRequest;
 
     @Override
     protected int getLayoutId() {
-        return R.layout.activity_login;
+        return R.layout.activity_repeat_login;
     }
 
     @Override
     protected void initVariable() {
         loginRequest = new LoginRequest();
+
     }
 
     @Override
@@ -67,56 +68,48 @@ public class LoginActivity extends NoBarActivity {
     }
 
 
-    /**
-     * 登录按钮点击事件
-     */
+
     @OnClick(R.id.btn_login)
-    public void onBtnLoginClicked() {
-        loginRequest.setRegisteName(editRegisterName.getText().toString().trim());
-        loginRequest.setPasswordConfirm(editPasswordConfirmation.getText().toString().trim());
-        loginRequest.setRegisteMail(editRegisterMail.getText().toString().trim());
-        loginRequest.getRegistePhone(editRegisterPhone.getText().toString().trim());
-        loginRequest.getRegisteSchool(editSchool.getText().toString().trim());
-        loginRequest.getRegisteCaptch(editCaptch.getText().toString().trim());
+    public void onViewClicked() {
+        loginRequest.setName(editRegisterName.getText().toString().trim());
+        loginRequest.setEmail(editRegisterMail.getText().toString().trim());
+        loginRequest.setMobile(editRegisterPhone.getText().toString().trim());
+        loginRequest.setPassword(editRegisterPassword.getText().toString().trim());
+        loginRequest.setSchool(editSchool.getText().toString().trim());
+        loginRequest.setPassword_confirmation(editPasswordConfirmation.getText().toString().trim());
+        loginRequest.setCaptcha(editCaptch.getText().toString().trim());
 
-
-        if (isDataTrue()) {
+        if(isDataTrue()){
             login();
+
         }
     }
 
-    /**
-     * 进行登录的相关操作的方法
-     */
     private void login() {
-        //弹出progressDialog
-        progressDialog.setMessage("请稍候");
+        progressDialog.setMessage("正在注册，请稍等");
         progressDialog.show();
 
-        //网络请求
         RestClient.getService().login(loginRequest).enqueue(new DataCallback<APIResponse>() {
-
-            //请求成功时回调
             @Override
             public void onDataResponse(Call<APIResponse> call, Response<APIResponse> response) {
-                ToastUtil.showToast("登录成功");
+                ToastUtil.showToast("注册成功");
 
-                //跳转至MainActivity
-                Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+
+                Intent intent =new Intent(LoginActivity.this, MainActivity.class);
                 startActivity(intent);
 
                 finish();
+
             }
 
-            //请求失败时回调
             @Override
             public void onDataFailure(Call<APIResponse> call, Throwable t) {
+                ToastUtil.showToast("注册失败");
             }
 
-            //无论成功或者失败时都回调，用于dismissDialog或隐藏其他控件
             @Override
             public void dismissDialog() {
-                if (progressDialog.isShowing()) {
+                if(progressDialog.isShowing()){
                     disMissProgressDialog();
                 }
             }
@@ -124,57 +117,47 @@ public class LoginActivity extends NoBarActivity {
 
     }
 
-    /**
-     * 用于TextInputEditText控件显示错误信息
-     *
-     * @param textInputEditText 控件对象
-     * @param error             错误信息
-     */
-    private void showError(TextInputEditText textInputEditText, String error) {
+
+    private void showError(TextInputEditText textInputEditText,String error){
         textInputEditText.setError(error);
         textInputEditText.setFocusable(true);
         textInputEditText.setFocusableInTouchMode(true);
         textInputEditText.requestFocus();
+
     }
 
-    /**
-     * 验证用户输入是否正确
-     *
-     * @return 正确为true
-     */
-    private boolean isDataTrue() {
-        boolean flag = true;
-        if(editRegisterName.getText().toString().trim().length()<6){
-            showError(editRegisterName,"昵称不得少于6个字符");
+    private boolean isDataTrue(){
+        boolean flag=true;
+        if(editRegisterName.getText().toString().trim().length()<4){
+            showError(editRegisterName,"注册字符不得少于4个");
             flag=false;
         }
         else if(editRegisterPassword.getText().toString().trim().length()<6){
-            showError(editRegisterPassword,"密码不得少于六个字符");
+            showError(editRegisterPassword,"密码不得少于6个字符");
             flag=false;
         }
-        else if(editPasswordConfirmation.getText().toString().trim().length()!=editRegisterPassword.getText().toString().trim().length()){
+        else if(!editPasswordConfirmation.getText().toString().trim().equals
+                (editRegisterPassword.getText().toString().trim())){
             showError(editPasswordConfirmation,"两次输入的密码须一致");
             flag=false;
         }
+        else if(editRegisterMail.getText().toString().length()==0){
+            showError(editRegisterMail,"邮箱不得为空");
+            flag=false;
+        }
         else if(editRegisterPhone.getText().toString().trim().length()<11){
-            showError(editRegisterPhone,"手机号不得小于11位");
+            showError(editRegisterPhone,"手机号码不得少于11位");
             flag=false;
         }
         else if(editCaptch.getText().toString().trim().length()==0){
-            showError(editCaptch,"验证码不可为空");
+            showError(editCaptch,"验证码不得为空");
             flag=false;
         }
-        else if (editRegisterMail.getText().toString().trim().length()==0){
-            showError(editRegisterMail,"邮箱不可为空");
-            flag=false;
-        }
+
         return flag;
     }
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        // TODO: add setContentView(...) invocation
-        ButterKnife.bind(this);
-    }
+
+
+
 }
